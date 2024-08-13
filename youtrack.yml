@@ -1,0 +1,12 @@
+version: "3.3"
+
+services:
+  
+  youtrack:
+    image: jetbrains/youtrack:2024.2.37269
+    container_name: "youtrack"
+    volumes:
+      - /home/adam/docker/volumes/youtrack/data:/opt/youtrack/data
+      - /home/adam/docker/volumes/youtrack/conf:/opt/youtrack/conf
+      - /home/adam/docker/volumes/youtrack/logs:/opt/youtrack/logs
+      - /home/adam/docker/volumes/youtrack/backups:/opt/youtrack/backups
