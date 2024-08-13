@@ -1,0 +1,29 @@
+version: '3.3'
+
+services:
+   db:
+     image: mysql:5.7
+     container_name: leantime_mysql
+     volumes:
+       - /home/adam/docker/volumes/leantimemysql/db_data:/var/lib/mysql
+     restart: always
+     environment:
+         MYSQL_ROOT_PASSWORD: 'R00tP@ssword'
+         MYSQL_DATABASE: 'leantime'
+         MYSQL_USER: 'ltuser'
+         MYSQL_PASSWORD: 'P@ssword'
+     ports:
+       - "3306:3306"
+     command: --character-set-server=utf8 --collation-server=utf8_unicode_ci
+   web:
+     image: leantime/leantime:latest
+     container_name: leantime
+     environment:
+         LEAN_DB_HOST: 'leantime_mysql'
+         LEAN_DB_USER: 'ltuser'
+         LEAN_DB_PASSWORD: 'P@ssword'
+         LEAN_DB_DATABASE: 'leantime'
+     ports:
+       - "9000:9000"
+     depends_on:
+       - db
