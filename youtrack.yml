@@ -10,3 +10,5 @@ services:
       - /home/adam/docker/volumes/youtrack/conf:/opt/youtrack/conf
       - /home/adam/docker/volumes/youtrack/logs:/opt/youtrack/logs
       - /home/adam/docker/volumes/youtrack/backups:/opt/youtrack/backups
+
+# Set directory permissions https://www.jetbrains.com/help/youtrack/server/youtrack-docker-installation.html#create-and-configure-directories
