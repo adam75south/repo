@@ -1,0 +1,25 @@
+version: "3"
+services:
+  vaultwarden:
+    image: vaultwarden/server:latest
+    container_name: vaultwarden
+    restart: unless-stopped
+    ports:
+     - 8445:80 #map any custom port to use (replace 8445 not 80)
+    volumes:
+     - /volume1/docker/vaultwarden:/data:rw
+    environment:
+#     - ROCKET_TLS={certs="/ssl/certs/certs.pem",key="/ssl/private/key.pem"}  // Environment variable is specific to the Rocket web server
+
+     - WEBSOCKET_ENABLED=true
+     - SIGNUPS_ALLOWED=false
+     - SMTP_HOST=smtp.spamtitan.org
+     - SMTP_FROM=vaultwarden@example.org
+     - SMTP_PORT=25
+     - SMTP_SECURITY=off
+     - DOMAIN=https://vault.example.org:8443
+#uncomment below network part if you are using Nginx Proxy Manager, or you can remove the same
+networks:
+  default:
+    external:
+      name: nginxproxymanager_default
