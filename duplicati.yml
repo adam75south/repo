@@ -1,0 +1,20 @@
+---
+services:
+  duplicati:
+    image: lscr.io/linuxserver/duplicati:latest
+    container_name: duplicati
+    environment:
+      - PUID=0
+      - PGID=0
+      - TZ=America/Chicago
+      - CLI_ARGS= #optional
+    volumes:
+      - /home/adam/docker/volumes/duplicati/config:/config
+      - /home/adam/docker/volumes/duplicati/backups:/backups
+      - /home/adam/:/source
+      - /var/lib/docker/volumes/:/dockervolumes
+      - /home/adam/:/adam
+      - /home/adam/docker:/docker
+    ports:
+      - 8200:8200
+    restart: unless-stopped
